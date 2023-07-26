@@ -79,6 +79,23 @@ class CustomDetailViewController: UIViewController {
         }
         ingred = netWorkController.loadJson(fileName: "Ingred") ?? []
         AddingIngredButton.addTarget(self, action: #selector(ingredButtonTapped), for: .touchUpInside)
+        
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
+                                                target: nil, action: nil)
+        let toolbar = UIToolbar()
+                
+        let doneButton = UIBarButtonItem(title: "Done", style: .done,
+                                                target: self, action: #selector(doneButtonTapped))
+        
+        toolbar.setItems([flexSpace, doneButton], animated: true)
+                toolbar.sizeToFit()
+        
+        nameTextField.inputAccessoryView = toolbar
+        instruTextView.inputAccessoryView = toolbar
+    }
+    
+    @objc func doneButtonTapped() {
+           view.endEditing(true)
     }
     
     @objc func ingredButtonTapped() {
@@ -160,7 +177,7 @@ class CustomDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         for i in 0..<selectedIngreds.count {
-            if !ingretsArray.contains(selectedIngreds[i]){
+            if !ingretsArray.contains(selectedIngreds[i]), !selectedIngreds[i].isEmpty{
                 let ingreLabel = UILabel()
                 let measureLabel = UILabel()
                 ingreLabel.text = selectedIngreds[i]

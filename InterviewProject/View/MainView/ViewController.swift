@@ -35,7 +35,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
-        title = "Personalized Cocktail"
+        title = "CocktailGenius"
+        self.tableView.keyboardDismissMode = .onDrag
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAddButton))
         if let favorite = favorite, !favorite.isEmpty {
             isFavoriteEnable = true
@@ -112,6 +113,7 @@ extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "searchResultDC") as? ViewSearchResultController else { return }
+        vc.isHideSearBar = true
         if indexPath.row == 0 {
             guard let favVC = storyboard?.instantiateViewController(withIdentifier: "FavoritesVC") as? FavoritesTableViewController else { return }
             self.navigationController?.pushViewController(favVC, animated: true)

@@ -13,6 +13,7 @@ class TableViewSearchResultsCell: UITableViewCell {
     @IBOutlet weak var drinkImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     let imageCache = NSCache<NSString, UIImage>()
+    var isMutipleSelection = false
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,8 +22,9 @@ class TableViewSearchResultsCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        if selected, isMutipleSelection {
+            self.backgroundColor = .gray
+        }
     }
     
     func getImage(uiimage: UIImage){

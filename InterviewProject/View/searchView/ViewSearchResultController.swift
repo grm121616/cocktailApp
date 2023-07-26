@@ -10,14 +10,15 @@ import UIKit
 
 class ViewSearchResultController: UIViewController {
     
+    @IBOutlet weak var searchBarBar: UISearchBar!
     @IBOutlet weak var searchBar: UITableView!
     @IBOutlet weak var searchResultTableView: UITableView!
+    
+    var isHideSearBar = false
     
     let viewModel = ViewModel()
     
     var searchDrinks: [Drink] = []
-    
-    var selectedIndex = IndexPath(row: -1, section: 0)
     
     var ingredNames: [StrIngre] = [] {
         didSet {
@@ -51,6 +52,10 @@ class ViewSearchResultController: UIViewController {
         searchBar.delegate = self
         filterIngred = ingredNames
         filterIngredURLs = ingredURLs
+        searchResultTableView.keyboardDismissMode = .onDrag
+        if isHideSearBar {
+            searchBarBar.isHidden = true
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -72,6 +77,7 @@ extension ViewSearchResultController: UITableViewDataSource {
         if isFromCustomView {
             cell.nameLabel.text = filterIngred[indexPath.row].strIngredient1
             cell.loadIngredsImage(ingredsString: filterIngredURLs[indexPath.row])
+            cell.isMutipleSelection = true
         } else {
             cell.nameLabel.text = searchDrinks[indexPath.row].strDrink
             cell.loadImage(urlString: searchDrinks[indexPath.row].strDrinkThumb)
