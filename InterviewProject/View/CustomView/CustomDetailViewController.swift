@@ -225,6 +225,13 @@ class CustomDetailViewController: UIViewController {
             self.present(vc, animated: true)
         }))
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        actionSheet.popoverPresentationController?.sourceView = self.view
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            let xOrigin = self.view.bounds.width / 2 // Replace this with one of the lines at the end
+            let popoverRect = CGRect(x: xOrigin, y: 0, width: 1, height: 1)
+            actionSheet.popoverPresentationController?.sourceRect = popoverRect
+            actionSheet.popoverPresentationController?.permittedArrowDirections = .up
+        }
         self.present(actionSheet, animated: true)
     }
     
