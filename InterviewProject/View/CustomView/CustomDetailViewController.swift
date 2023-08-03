@@ -133,7 +133,7 @@ class CustomDetailViewController: UIViewController {
     }
     
     func showCompletionAlert() {
-        let alert = UIAlertController(title: "Congrats", message: "🍰+🍋 is best", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Congrats", message: "let's go~", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }

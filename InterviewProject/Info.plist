@@ -28,9 +28,9 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>Please allow access.</string>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Please allow access.</string>
+	<string>Access to the camera allow you to take photos for your profile.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Allow photo access to add photo to your feeds.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
